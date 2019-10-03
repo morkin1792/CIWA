@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            function openPage(evt, cityName) {
+                // Declare all variables
+                var i, tabcontent, tablinks;
+                
+                // Get all elements with class="tabcontent" and hide them
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                
+                // Get all elements with class="tablinks" and remove the class "active"
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                
+                // Show the current tab, and add an "active" class to the button that opened the tab
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            String.prototype.replaceAll = function(search, replacement) {
+                var target = this;
+                return target.replace(new RegExp(search, 'g'), replacement);
+            };
+            window.level = 3
+            function req(url) {
+                var level = window.level
+                $.ajax({
+                    url: url + (url.includes("?") ? "&level=" : "?level=") + level,
+                    success: function(data){
+                        document.getElementById('result').innerHTML = JSON.stringify(data, null, '\t').replaceAll('\n', '<br>').replaceAll('\t', '&ensp;');
+                    },
+                    error: function(){
+                        alert('failure');
+                    }
+                });
+            }
+
+            function createPerson() {
+                var name = document.getElementById('namePerson').value
+                var age = document.getElementById('agePerson').value
+                var weight = document.getElementById('weightPerson').value
+                req('/create/' + name + '/' + age + '/' + weight)
+            }
+
+            function showById() {
+                var id = document.getElementById('idPerson').value
+                req('/show/id?id=' + id)
+            }
+
+            function showByName() {
+                var name = document.getElementById('namePerson2').value
+                req('/show/name?name=' + name)
+            }
+
+            function deletePerson() {
+                var id = document.getElementById('idPerson2').value
+                req('/delete?id=' + id)
+            }
+
+            function saveLevel() {
+                var level = document.getElementById('level').value
+                window.level = level
+            }
+
+            function resetDB() {
+                req('/clear')
+            }
+            
+        </script>
+    </head>
+    <body>
+
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" onclick="openPage(event, 'Create')">Create Person</button>
+            <button class="tablinks" onclick="openPage(event, 'ShowById')">Show Person By ID</button>
+            <button class="tablinks" onclick="openPage(event, 'ShowByName')">Show Person By Name</button>
+            <button class="tablinks" onclick="openPage(event, 'Delete')">Delete Person</button>
+            <button class="tablinks" onclick="openPage(event, 'Config')">Config</button>
+        </div>
+        
+        <!-- Tab content -->
+        <div id="Create" class="tabcontent">
+            Name: <input type="text" id="namePerson">
+            Age: <input type="text" id="agePerson"><br>
+            Weight: <input type="text" id="weightPerson"><br>
+            <input type="submit" value="Submit" onclick="createPerson()">
+            
+        </div>
+        
+        <div id="ShowById" class="tabcontent">
+            ID: <input type="text" id="idPerson"><br>
+            <input type="submit" onclick="showById()" value="Submit">
+        </div>
+        
+        <div id="ShowByName" class="tabcontent">
+            Name: <input type="text" id="namePerson2"><br>
+            <input type="submit" onclick="showByName()" value="Submit">
+        </div>
+        
+        <div id="Delete" class="tabcontent">
+            ID: <input type="text" id="idPerson2"><br>
+            <input type="submit" onclick="deletePerson()" value="Submit">
+        </div>
+
+        <div id="Config" class="tabcontent">
+            <select id="level">
+                <option value="1">Prepared statement</option>
+                <option value="2">Blind</option>
+                <option value="3" selected>Error-Based</option>
+            </select>
+            <input type="submit" onclick="saveLevel()" value="Salvar"><br>
+            <br>
+            <input type="submit" onclick="resetDB()" value="Reset DB">
+
+        </div>
+
+        <code id="result"></code>
+
+    </body>
+</html>

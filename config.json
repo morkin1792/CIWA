@@ -1,0 +1,10 @@
+{
+    "uri": "bolt://localhost:7687",
+    "user": "neo4j",
+    "password": "neo4j1",
+    "files": [
+        "functions/normal.js", 
+        "functions/blind.js", 
+        "functions/errorbased.js"
+    ]
+}
