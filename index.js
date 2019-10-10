@@ -19,13 +19,15 @@ const _f = (req) => {
     return fs[level-1]
 }
 
+app.disable('x-powered-by');
+
 app.use('/', express.static(path.join(__dirname, 'static')))
 
-app.get('/create/:name/:age/:weight', async (req, res) => {
+app.get('/create/:name/:age/:company', async (req, res) => {
     const name = req.params.name
     const age = req.params.age
-    const weight = req.params.weight
-    res.send(await _f(req).createPerson([name, age, weight]))
+    const company = req.params.company
+    res.send(await _f(req).createPerson([name, age, company]))
 })
 
 app.get('/show/id/', async (req, res) => {
@@ -49,7 +51,7 @@ app.get('/clear', async (req, res) => {
     let result = ''
     try {
         await session.run(
-            'MATCH (n) DELETE n',
+            'MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r',
         );
         result = 'ok'
     } catch (e) {

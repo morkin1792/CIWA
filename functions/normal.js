@@ -14,8 +14,8 @@ const _q = async (query, obj) => {
     return result
 }
 
-exports.createPerson = async ([name, age, weight]) => {
-    return await _q('CREATE (a:Person {name: $name, age: $age, weight: $weight}) RETURN a', {name: name, age:age, weight:weight})
+exports.createPerson = async ([name, age, company]) => {
+    return await _q('MERGE (p:Person {name:$name, age:$age}) MERGE(c:Company{name:$company}) MERGE (p)-[r:WORKS]->(c) RETURN p,r,c', {name: name, age:age, company:company})
 }
 
 exports.showPersonById = async ([id]) => {

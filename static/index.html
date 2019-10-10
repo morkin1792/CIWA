@@ -46,8 +46,8 @@
             function createPerson() {
                 var name = document.getElementById('namePerson').value
                 var age = document.getElementById('agePerson').value
-                var weight = document.getElementById('weightPerson').value
-                req('/create/' + name + '/' + age + '/' + weight)
+                var company = document.getElementById('nameCompany').value
+                req('/create/' + name + '/' + age + '/' + company)
             }
 
             function showById() {
@@ -91,7 +91,7 @@
         <div id="Create" class="tabcontent">
             Name: <input type="text" id="namePerson">
             Age: <input type="text" id="agePerson"><br>
-            Weight: <input type="text" id="weightPerson"><br>
+            Company: <input type="text" id="nameCompany"><br>
             <input type="submit" value="Submit" onclick="createPerson()">
             
         </div>
