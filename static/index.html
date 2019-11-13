@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <title>CIWA</title>
         <link rel="stylesheet" type="text/css" href="styles.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <meta 
+            name='viewport' 
+            content='initial-scale=1.5' 
+        />
         <script>
             function openPage(evt, cityName) {
                 // Declare all variables
@@ -78,6 +84,9 @@
     </head>
     <body>
 
+        <div id="title">
+            <h4> CIWA </h4>
+        </div>
         <!-- Tab links -->
         <div class="tab">
             <button class="tablinks" onclick="openPage(event, 'Create')">Create Person</button>
@@ -115,6 +124,7 @@
             <select id="level">
                 <option value="1">Prepared statement</option>
                 <option value="2">Blind</option>
+                <option value="4" selected>Async Blind</option>
                 <option value="3" selected>Error-Based</option>
             </select>
             <input type="submit" onclick="saveLevel()" value="Salvar"><br>

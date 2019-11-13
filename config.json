@@ -5,6 +5,7 @@
     "files": [
         "functions/normal.js", 
         "functions/blind.js", 
-        "functions/errorbased.js"
+        "functions/errorbased.js",
+        "functions/asyncblind.js"
     ]
 }

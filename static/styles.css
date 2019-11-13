@@ -1,12 +1,18 @@
 
-/* Style the tab */
+#title {
+    height: 40;   
+    background-color: #f1f1f1;
+    padding: 0.1% 50%;
+    margin-top: -20px;
+    margin-bottom: -10px;
+}
+
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
 }
 
-/* Style the buttons that are used to open the tab content */
 .tab button {
     background-color: inherit;
     float: left;
@@ -17,17 +23,14 @@
     transition: 0.3s;
 }
 
-/* Change background color of buttons on hover */
 .tab button:hover {
     background-color: #ddd;
 }
 
-/* Create an active/current tablink class */
 .tab button.active {
     background-color: #ccc;
 }
 
-/* Style the tab content */
 .tabcontent {
     display: none;
     padding: 6px 12px;
