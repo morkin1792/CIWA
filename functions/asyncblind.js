@@ -12,7 +12,7 @@ exports.showPersonById = async (args) => {
 }
 
 exports.showPersonByName = async (args) => {
-    showPersonById(args)
+    showPersonByName(args)
     return 'show name ok'
 }
 
