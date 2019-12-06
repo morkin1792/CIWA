@@ -22,7 +22,21 @@ const _f = (req) => {
     return fs[level-1]
 }
 
-app.disable('x-powered-by');
+app.disable('x-powered-by')
+
+app.use((req, res, next) => {
+    let err = null;
+    try {
+        decodeURIComponent(req.path)
+    }
+    catch(e) {
+        err = e
+    }
+    if (err){
+        return res.redirect(['http://', req.get('Host'), '/'].join(''))    
+    }
+    next()
+})
 
 app.use('/', express.static(path.join(__dirname, 'static')))
 
