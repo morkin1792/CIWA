@@ -23,6 +23,7 @@ const _f = (req) => {
 }
 
 app.disable('x-powered-by')
+app.disable('etag')
 
 app.use((req, res, next) => {
     let err = null;
