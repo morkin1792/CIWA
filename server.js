@@ -79,6 +79,6 @@ app.get('/clear', async (req, res) => {
 
 })
 
-console.log('running http://localhost:3030')
+console.log('access http://localhost:3030')
 app.listen(3030)
 

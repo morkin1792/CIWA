@@ -4,11 +4,10 @@ A insecure web application to test Cypher Injection
 
 ### Dependencies
 
-- Node
 - Docker
 
-### Running 
-<pre>
-bash start.sh
-</pre>
-See: http://localhost:3030
+### Build the docker image
+<pre>docker build -t ciwa .</pre>
+
+### Run 
+<pre>docker run -ti -p3030:3030 ciwa</pre>
