@@ -1,7 +1,7 @@
 bash /docker-entrypoint.sh
 neo4j start 
 function changePassword() {
-    cypher-shell -u neo4j -p neo4j 'CALL dbms.changePassword("neo4j1")' 2>/dev/null
+    echo 'neo4j1' | cypher-shell -u neo4j -p neo4j 2>/dev/null >&2
 }
 echo -n 'waiting for neo4j to load'
 while ! changePassword; do

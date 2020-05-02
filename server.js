@@ -11,7 +11,7 @@ const {
 
 const fs = files.map(i => { return require('./' + i) })
 const neo4j = require('neo4j-driver').default
-const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
+const driver = neo4j.driver(uri, neo4j.auth.basic(user, password), {encrypted: 'ENCRYPTION_OFF'});
 global.session = driver.session();
 
 const _f = (req) => {
@@ -79,6 +79,6 @@ app.get('/clear', async (req, res) => {
 
 })
 
-console.log('access http://localhost:3030')
+console.log('[*] All ok! Now you can access: http://localhost:3030')
 app.listen(3030)
 
