@@ -1,13 +1,13 @@
 ## CIWA - Cypher Injection Web Application
 
-A insecure web application to test Cypher Injection
+An insecure web application to test Cypher Injection
 
 ### Dependencies
 
 - Docker
 
-### Build the docker image
+### Building the docker image
 <pre>docker build -t ciwa .</pre>
 
-### Run 
+### Running 
 <pre>docker run -ti -p3030:3030 ciwa</pre>
